@@ -1,8 +1,8 @@
 import React from 'react'
 import * as S from './styles'
 
-import Card from 'components/Card'
 import Header from 'components/Header'
+import Post from 'components/Post'
 import PostMaker from 'components/PostMaker'
 
 const HomePage = () => {
@@ -11,7 +11,7 @@ const HomePage = () => {
       <Header />
       <S.Wrapper>
         <PostMaker />
-        <Card>Card Content</Card>
+        <Post />
       </S.Wrapper>
     </>
   )

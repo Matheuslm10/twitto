@@ -10,7 +10,6 @@ const PostMaker = () => {
       <S.Wrapper>
         <S.TextInput
           placeholder="What's happening?"
-          spellCheck="false"
           contentEditable="true"
           suppressContentEditableWarning={true}
         ></S.TextInput>
