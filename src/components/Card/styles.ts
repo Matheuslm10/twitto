@@ -5,6 +5,6 @@ export const Card = styled.div`
   background-color: #ffffff;
   border: solid 1px #d7d7d7;
   border-radius: 10px;
-  padding: 10px 15px;
+  padding: 15px;
   margin: 20px 0;
 `
