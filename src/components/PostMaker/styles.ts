@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+export const PostMaker = styled.div`
+  margin-top: 80px;
+`
+
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;

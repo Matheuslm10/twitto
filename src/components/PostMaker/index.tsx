@@ -6,16 +6,18 @@ import Button from 'components/Button'
 
 const PostMaker = () => {
   return (
-    <Card>
-      <S.Wrapper>
-        <S.TextInput
-          placeholder="What's happening?"
-          contentEditable="true"
-          suppressContentEditableWarning={true}
-        ></S.TextInput>
-        <Button>Post</Button>
-      </S.Wrapper>
-    </Card>
+    <S.PostMaker>
+      <Card>
+        <S.Wrapper>
+          <S.TextInput
+            placeholder="What's happening?"
+            contentEditable="true"
+            suppressContentEditableWarning={true}
+          ></S.TextInput>
+          <Button>Post</Button>
+        </S.Wrapper>
+      </Card>
+    </S.PostMaker>
   )
 }
 
