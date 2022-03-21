@@ -5,24 +5,28 @@ import Card from 'components/Card'
 
 import userExample from 'assets/user-example.jpeg'
 
-const user = {
-  name: 'Jasmine Jones',
-  username: 'jasmineJonJon',
-  postContent:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum nisl et nisl laoreet, in euismod risus bibendum. Pellentesque at laoreet elit, nec facilisis felis. Aenean molestie, ipsum nec condimentum egestas, turpis arcu consequat felis, ut blandit urna dui in neque. Phasellus eu gravida ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum nisl et nisl laoreet, in euismod risus bibendum. Pellentesque at laoreet elit, nec facilisis felis. Aenean molestie, ipsum nec condimentum egestas, turpis arcu consequat felis, ut blandit urna dui in neque. Phasellus eu gravida ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum nisl et nisl laoreet, in euismod risus bibendum. Lorem ipsum dolor siti.',
+type PostProps = {
+  id: number
+  author: PostAuthor
+  postContent: string
 }
 
-const Post = () => {
+type PostAuthor = {
+  name: string
+  username: string
+}
+
+const Post = ({ author, postContent }: PostProps) => {
   return (
     <Card>
       <S.Wrapper>
         <S.ProfilePicture src={userExample} />
         <S.TextWrapper>
           <S.UserInfoWrapper>
-            <h1>{user.name}</h1>
-            <h2>{'@' + user.username}</h2>
+            <h1>{author.name}</h1>
+            <h2>{'@' + author.username}</h2>
           </S.UserInfoWrapper>
-          {user.postContent}
+          {postContent}
         </S.TextWrapper>
       </S.Wrapper>
     </Card>
