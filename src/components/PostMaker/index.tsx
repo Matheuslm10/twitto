@@ -10,6 +10,7 @@ const PostMaker = () => {
     maxNumberOfCharacters
   )
   const [submitBtnIsEnabled, setSubmitBtnIsEnabled] = useState(false)
+  const [exceedsTheLimit, setExceedsTheLimit] = useState(false)
 
   const handleInput = useCallback((event) => {
     let numberOfCharacters = event.target.textContent.length
@@ -22,13 +23,15 @@ const PostMaker = () => {
 
     numberOfCharacters += numberOfLines
 
-    if (
-      numberOfCharacters > maxNumberOfCharacters ||
-      numberOfCharacters === 0
-    ) {
+    if (numberOfCharacters > maxNumberOfCharacters) {
       setSubmitBtnIsEnabled(false)
+      setExceedsTheLimit(true)
+    } else if (numberOfCharacters === 0) {
+      setSubmitBtnIsEnabled(false)
+      setExceedsTheLimit(false)
     } else {
       setSubmitBtnIsEnabled(true)
+      setExceedsTheLimit(false)
     }
 
     const numberOfCharactersLeft = maxNumberOfCharacters - numberOfCharacters
@@ -52,13 +55,17 @@ const PostMaker = () => {
             contentEditable="true"
             suppressContentEditableWarning={true}
           ></S.TextInput>
-          {numberOfCharactersLeft}
-          <Button
-            aria-label="submit post button"
-            disabled={!submitBtnIsEnabled}
-          >
-            Post
-          </Button>
+          <S.BottomWrapper>
+            <S.CharactersLeft exceedsTheLimit={exceedsTheLimit}>
+              {numberOfCharactersLeft + '/777'}
+            </S.CharactersLeft>
+            <Button
+              aria-label="submit post button"
+              disabled={!submitBtnIsEnabled}
+            >
+              Post
+            </Button>
+          </S.BottomWrapper>
         </S.Wrapper>
       </Card>
     </S.PostMaker>

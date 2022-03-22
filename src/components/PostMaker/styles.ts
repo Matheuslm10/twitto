@@ -1,4 +1,8 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+
+export type CharactersLeftProps = {
+  exceedsTheLimit: boolean
+}
 
 export const PostMaker = styled.div`
   margin-top: 80px;
@@ -12,10 +16,20 @@ export const PostMaker = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+`
 
-  button {
-    margin-top: 10px;
-  }
+export const BottomWrapper = styled.div`
+  display: flex;
+  margin-top: 15px;
+  align-items: center;
+`
+
+export const CharactersLeft = styled.div<CharactersLeftProps>`
+  ${({ exceedsTheLimit }) => css`
+    color: ${exceedsTheLimit ? '#ff0000' : '#87898c'};
+    margin-left: auto;
+    margin-right: 10px;
+  `}
 `
 
 export const TextInput = styled.div`
