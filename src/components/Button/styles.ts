@@ -11,6 +11,7 @@ export const Button = styled.button`
   height: 36px;
   border-radius: 32px;
   border: 0;
+  cursor: pointer;
 
   :hover {
     filter: brightness(90%);

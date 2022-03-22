@@ -10,6 +10,7 @@ export const Header = styled.div`
   height: 60px;
   background-color: #ffffff;
   border-bottom: solid 1px #d7d7d7;
+  z-index: 1;
 `
 
 export const Wrapper = styled.div`

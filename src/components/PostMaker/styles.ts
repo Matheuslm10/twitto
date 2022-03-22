@@ -2,6 +2,11 @@ import styled from 'styled-components'
 
 export const PostMaker = styled.div`
   margin-top: 80px;
+
+  button:disabled {
+    filter: opacity(60%);
+    cursor: default;
+  }
 `
 
 export const Wrapper = styled.div`
