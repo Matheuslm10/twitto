@@ -7,13 +7,11 @@ import userExample from 'assets/user-example.jpeg'
 
 type PostProps = {
   id: number
-  author: PostAuthor
+  author: {
+    name: string
+    username: string
+  }
   postContent: string
-}
-
-type PostAuthor = {
-  name: string
-  username: string
 }
 
 const Post = ({ author, postContent }: PostProps) => {
