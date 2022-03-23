@@ -1,49 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import * as S from './styles'
 
 import Header from 'components/Header'
 import Post from 'components/Post'
 import PostMaker from 'components/PostMaker'
 
-import initialPosts from 'mock/posts.json'
-
-type PostType = {
-  id: number
-  author: {
-    name: string
-    username: string
-  }
-  postContent: string
-}
+import { usePosts } from 'hooks/use-posts'
 
 const HomePage = () => {
-  const [posts, setPosts] = useState<PostType[]>([])
-
-  useEffect(() => {
-    const loadPosts = () => {
-      const dataFromLocalStorage = JSON.parse(
-        localStorage.getItem('@posterr_data') || '{}'
-      )
-
-      if (dataFromLocalStorage?.data) {
-        setPosts(dataFromLocalStorage.data || [])
-      } else {
-        localStorage.setItem('@posterr_data', JSON.stringify(initialPosts))
-        loadPosts()
-      }
-    }
-
-    loadPosts()
-  }, [])
+  const { allPosts } = usePosts()
+  const isEmpty = allPosts.length === 0
+  const isPostsLoaded = allPosts !== undefined
 
   return (
     <>
       <Header />
       <S.Wrapper>
         <PostMaker />
-        {posts.map((postInfo) => (
-          <Post {...postInfo} key={postInfo.id} />
-        ))}
+        {!isPostsLoaded && 'An error occurred while loading the posts'}
+
+        {isPostsLoaded && isEmpty
+          ? "There's nothing here yet"
+          : allPosts.map((postInfo) => (
+              <Post {...postInfo} key={postInfo.id} />
+            ))}
       </S.Wrapper>
     </>
   )
