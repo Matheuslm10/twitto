@@ -3,20 +3,25 @@ import * as S from './styles'
 
 import Card from 'components/Card'
 import Button from 'components/Button'
+import { usePosts } from 'hooks/use-posts'
 
 const PostMaker = () => {
+  const [submitBtnIsEnabled, setSubmitBtnIsEnabled] = useState(false)
+  const [content, setContent] = useState('')
+  const [exceedsTheLimit, setExceedsTheLimit] = useState(false)
   const maxNumberOfCharacters = 777
   const [numberOfCharactersLeft, setNumberOfCharactersLeft] = useState(
     maxNumberOfCharacters
   )
-  const [submitBtnIsEnabled, setSubmitBtnIsEnabled] = useState(false)
-  const [exceedsTheLimit, setExceedsTheLimit] = useState(false)
 
-  const handleInput = useCallback((event) => {
-    let numberOfCharacters = event.target.textContent.length
+  const { addPost } = usePosts()
+
+  const checkCharacters = (event: React.FormEvent<HTMLInputElement>) => {
+    const eventTarget = event?.target as HTMLElement
+    let numberOfCharacters = eventTarget.textContent?.length || 0
 
     const wrapper = document.createElement('div')
-    wrapper.innerHTML = event.target.innerHTML
+    wrapper.innerHTML = eventTarget.innerHTML
     let numberOfLines = wrapper.childElementCount + 1
 
     if (numberOfLines) numberOfLines -= 1
@@ -37,6 +42,11 @@ const PostMaker = () => {
     const numberOfCharactersLeft = maxNumberOfCharacters - numberOfCharacters
 
     setNumberOfCharactersLeft(numberOfCharactersLeft)
+  }
+
+  const handleInput = useCallback((event) => {
+    checkCharacters(event)
+    setContent(event.target.innerText)
   }, [])
 
   useEffect(() => {
@@ -45,11 +55,36 @@ const PostMaker = () => {
       window.removeEventListener('input', handleInput)
     }
   }, [handleInput])
+
+  const buildPost = () => {
+    const post = {
+      id: new Date().getMilliseconds() + Math.random(),
+      author: {
+        name: 'Default User',
+        username: 'defaultUser2022',
+      },
+      postContent: content,
+    }
+    return post
+  }
+
+  const clearTextInput = () => {
+    const textInput = document.getElementById('text-input')
+    if (textInput) textInput.innerText = ''
+  }
+
+  const handlePostSubmission = () => {
+    const post = buildPost()
+    addPost(post)
+    clearTextInput()
+  }
+
   return (
     <S.PostMaker>
       <Card>
         <S.Wrapper>
           <S.TextInput
+            id="text-input"
             role="textbox"
             placeholder="What's happening?"
             contentEditable="true"
@@ -62,6 +97,7 @@ const PostMaker = () => {
             <Button
               aria-label="submit post button"
               disabled={!submitBtnIsEnabled}
+              onClick={handlePostSubmission}
             >
               Post
             </Button>

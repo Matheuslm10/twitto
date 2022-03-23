@@ -24,7 +24,7 @@ const Post = ({ author, postContent }: PostProps) => {
             <h1>{author.name}</h1>
             <h2>{'@' + author.username}</h2>
           </S.UserInfoWrapper>
-          {postContent}
+          <S.PostContent>{postContent}</S.PostContent>
         </S.TextWrapper>
       </S.Wrapper>
     </Card>

@@ -32,3 +32,7 @@ export const UserInfoWrapper = styled.div`
     margin-left: 5px;
   }
 `
+
+export const PostContent = styled.p`
+  white-space: pre-line;
+`

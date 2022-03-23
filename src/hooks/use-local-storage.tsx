@@ -32,4 +32,26 @@ function setPostsInLS(posts: PostType[]) {
   return localStorage.setItem(postsKey, JSON.stringify(newData))
 }
 
-export { getPostsFromLS, setPostsInLS }
+const addPostInLS = async (post: PostType): Promise<string> => {
+  const value = localStorage.getItem(postsKey)
+  let posts
+
+  if (value) {
+    posts = JSON.parse(value).data
+  }
+
+  if (posts) {
+    posts.splice(0, 0, post)
+    setPostsInLS(posts)
+    const postCreated = {
+      data: post,
+    }
+    return JSON.stringify(postCreated)
+  } else {
+    throw new Error(
+      'An error occurred while checking current posts before adding a new.'
+    )
+  }
+}
+
+export { getPostsFromLS, addPostInLS }

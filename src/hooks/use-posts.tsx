@@ -6,7 +6,7 @@ import {
   useEffect,
 } from 'react'
 
-import { fetchAllPosts } from 'api/posts'
+import { fetchAllPosts, createPost } from 'api/posts'
 
 // TODO: put this type definition in a shared space.
 type PostType = {
@@ -20,10 +20,12 @@ type PostType = {
 
 export type PostsContextTypes = {
   allPosts: PostType[]
+  addPost: (post: PostType) => void
 }
 
 export const PostsContextDefaultValues = {
   allPosts: [],
+  addPost: () => null,
 }
 
 export const PostsContext = createContext<PostsContextTypes>(
@@ -47,6 +49,20 @@ const PostsProvider = ({ children }: PostsProviderProps) => {
     }
   }, [])
 
+  const addPost = useCallback(
+    async (post: PostType) => {
+      try {
+        const data = await createPost(post)
+        const newPostList = [data].concat(allPosts)
+        setAllPosts(newPostList)
+      } catch (error) {
+        alert('An error occurred when creating the post.')
+        console.error(error)
+      }
+    },
+    [allPosts]
+  )
+
   useEffect(() => {
     getAllPosts()
   }, [getAllPosts])
@@ -55,6 +71,7 @@ const PostsProvider = ({ children }: PostsProviderProps) => {
     <PostsContext.Provider
       value={{
         allPosts,
+        addPost,
       }}
     >
       {children}
