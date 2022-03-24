@@ -25,9 +25,11 @@ const ProfileModal = () => {
       style={customStyles}
       contentLabel="Example Modal"
     >
-      {user.name}
-      {user.username}
-      {user.joiningData}
+      {user.name + ' | '}
+      {user.username + ' | '}
+      {'Joined ' + user.joiningData + ' | '}
+      {user.following.length + ' Following | '}
+      {user.followers.length + ' Followers '}
       <button onClick={closeModal}>close</button>
     </Modal>
   )

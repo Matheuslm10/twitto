@@ -6,6 +6,8 @@ type UserType = {
   name: string
   username: string
   joiningData: string
+  followers: string[]
+  following: string[]
 }
 
 export type ProfileModalContextTypes = {
@@ -17,7 +19,13 @@ export type ProfileModalContextTypes = {
 
 export const ProfileModalContextDefaultValues = {
   isShown: false,
-  user: { name: '', username: '', joiningData: '' },
+  user: {
+    name: '',
+    username: '',
+    joiningData: '',
+    followers: [],
+    following: [],
+  },
   openModalWithUserData: () => null,
   closeModal: () => null,
 }
@@ -36,6 +44,8 @@ const ProfileModalProvider = ({ children }: ProfileModalProviderProps) => {
     name: '',
     username: '',
     joiningData: '',
+    followers: [],
+    following: [],
   })
 
   const openModalWithUserData = useCallback(

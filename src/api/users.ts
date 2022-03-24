@@ -5,6 +5,8 @@ type UserType = {
   name: string
   username: string
   joiningData: string
+  followers: string[]
+  following: string[]
 }
 
 export const fetchUserByUsername = async (

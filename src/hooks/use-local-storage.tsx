@@ -19,6 +19,8 @@ type UserType = {
   name: string
   username: string
   joiningData: string
+  followers: string[]
+  following: string[]
 }
 
 const setPostsInLS = (posts: PostType[]) => {
