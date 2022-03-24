@@ -35,8 +35,8 @@ const ProfileModal = () => {
   const [numberOfPosts, setNumberOfPosts] = useState(0)
   const { user, isShown, closeModal, toggleFollowing } = useProfileModal()
   const { allPosts } = usePosts()
-  const isFollowing = user.followers.includes('defaultUser2022')
-  const isTheUserYourself = user.username === 'defaultUser2022'
+  const isFollowing = user.followers.includes('defaultUser22')
+  const isTheUserYourself = user.username === 'defaultUser22'
 
   useEffect(() => {
     const postsFromUser = allPosts.filter(

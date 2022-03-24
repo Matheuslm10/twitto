@@ -165,7 +165,7 @@ const followAndUpdate = (
 export const changeFollowingStatusInLS = async (
   username: string
 ): Promise<string> => {
-  const actionOwnerUsername = 'defaultUser2022'
+  const actionOwnerUsername = 'defaultUser22'
 
   const usersData = getUsersFromLS()
   const users = JSON.parse(usersData).data

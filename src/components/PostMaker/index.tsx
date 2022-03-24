@@ -61,7 +61,7 @@ const PostMaker = () => {
       id: new Date().getMilliseconds() + Math.random(),
       author: {
         name: 'Default User',
-        username: 'defaultUser2022',
+        username: 'defaultUser22',
       },
       postContent: content,
     }

@@ -11,9 +11,9 @@ const Header = () => {
         <S.DefaultUserIdentification>
           <div>
             <h1>{'Default User'}</h1>
-            <p>{'@defaultUser2022'}</p>
+            <p>{'@defaultUser22'}</p>
           </div>
-          <S.ProfilePicture src={'defaultUser2022.jpeg'} />
+          <S.ProfilePicture src={'defaultUser22.jpeg'} />
         </S.DefaultUserIdentification>
       </S.Wrapper>
     </S.Header>
