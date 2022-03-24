@@ -16,22 +16,19 @@ const customStyles = {
 Modal.setAppElement('#root')
 
 const ProfileModal = () => {
-  const { isShown, toggle } = useProfileModal()
-
-  function afterOpenModal() {
-    console.log('afterOpenModal')
-  }
+  const { user, isShown, closeModal } = useProfileModal()
 
   return (
     <Modal
       isOpen={isShown}
-      onAfterOpen={afterOpenModal}
-      onRequestClose={toggle}
+      onRequestClose={closeModal}
       style={customStyles}
       contentLabel="Example Modal"
     >
-      Hey!
-      <button onClick={toggle}>close</button>
+      {user.name}
+      {user.username}
+      {user.joiningData}
+      <button onClick={closeModal}>close</button>
     </Modal>
   )
 }

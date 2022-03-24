@@ -1,13 +1,25 @@
-import { useContext, createContext, useState } from 'react'
+import { fetchUserByUsername } from 'api/users'
+import { useContext, createContext, useState, useCallback } from 'react'
+
+// TODO: put this type definition in a shared space.
+type UserType = {
+  name: string
+  username: string
+  joiningData: string
+}
 
 export type ProfileModalContextTypes = {
   isShown: boolean
-  toggle: () => void
+  user: UserType
+  openModalWithUserData: (username: string) => void
+  closeModal: () => void
 }
 
 export const ProfileModalContextDefaultValues = {
   isShown: false,
-  toggle: () => null,
+  user: { name: '', username: '', joiningData: '' },
+  openModalWithUserData: () => null,
+  closeModal: () => null,
 }
 
 export const ProfileModalContext = createContext<ProfileModalContextTypes>(
@@ -20,14 +32,37 @@ export type ProfileModalProviderProps = {
 
 const ProfileModalProvider = ({ children }: ProfileModalProviderProps) => {
   const [isShown, setIsShown] = useState<boolean>(false)
+  const [user, setUser] = useState<UserType>({
+    name: '',
+    username: '',
+    joiningData: '',
+  })
 
-  const toggle = () => setIsShown(!isShown)
+  const openModalWithUserData = useCallback(
+    async (username: string) => {
+      try {
+        setIsShown(!isShown)
+        const user = await fetchUserByUsername(username)
+        setUser(user)
+      } catch (error) {
+        alert('An error occurred while loading data from user.')
+        console.error(error)
+      }
+    },
+    [isShown]
+  )
+
+  const closeModal = () => {
+    setIsShown(false)
+  }
 
   return (
     <ProfileModalContext.Provider
       value={{
         isShown,
-        toggle,
+        user,
+        openModalWithUserData,
+        closeModal,
       }}
     >
       {children}

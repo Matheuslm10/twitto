@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "name": "Default User",
+      "username": "defaultUser2022",
+      "joiningData": "February 21, 2022",
+      "numberOfPosts": 0,
+      "followers": [],
+      "following": []
+    },
+    {
+      "name": "Jasmine Jones",
+      "username": "jasmineJonJon",
+      "joiningData": "January 11, 2021",
+      "numberOfPosts": 1,
+      "followers": ["monroe2022"],
+      "following": []
+    },
+    {
+      "name": "Josh Monroe",
+      "username": "monroe2022",
+      "joiningData": "September 02, 2021",
+      "numberOfPosts": 1,
+      "followers": ["matmachado"],
+      "following": ["matmachado", "jasmineJonJon"]
+    },
+    {
+      "name": "Matheus Machado",
+      "username": "matmachado",
+      "joiningData": "December 30, 2021",
+      "numberOfPosts": 1,
+      "followers": ["monroe2022"],
+      "following": ["monroe2022"]
+    }
+  ]
+}

@@ -16,14 +16,19 @@ type PostProps = {
 }
 
 const Post = ({ author, postContent }: PostProps) => {
-  const { toggle } = useProfileModal()
+  const { openModalWithUserData } = useProfileModal()
 
   return (
     <Card>
       <S.Wrapper>
-        <S.ProfilePicture src={userExample} onClick={toggle} />
+        <S.ProfilePicture
+          src={userExample}
+          onClick={() => openModalWithUserData(author.username)}
+        />
         <S.TextWrapper>
-          <S.UserInfoWrapper onClick={toggle}>
+          <S.UserInfoWrapper
+            onClick={() => openModalWithUserData(author.username)}
+          >
             <h1>{author.name}</h1>
             <h2>{'@' + author.username}</h2>
           </S.UserInfoWrapper>
