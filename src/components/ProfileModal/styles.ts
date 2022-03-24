@@ -28,11 +28,17 @@ export const BottomWrapper = styled.div`
 
 export const UserIdentification = styled.div`
   display: flex;
-  flex-direction: column;
 
   p {
     margin-top: 5px;
   }
+`
+export const ProfilePicture = styled.img`
+  height: 48px;
+  width: 48px;
+  border-radius: 100%;
+  margin-right: 15px;
+  cursor: pointer;
 `
 
 export const FollowButton = styled.div`

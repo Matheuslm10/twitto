@@ -55,8 +55,11 @@ const ProfileModal = () => {
       <S.ContentWrapper>
         <S.TopWrapper>
           <S.UserIdentification>
-            <h1>{user.name}</h1>
-            <p>{'@' + user.username}</p>
+            <S.ProfilePicture src={user.username + '.jpeg'} />
+            <div>
+              <h1>{user.name}</h1>
+              <p>{'@' + user.username}</p>
+            </div>
           </S.UserIdentification>
           <S.FollowButton>
             {!isTheUserYourself && (

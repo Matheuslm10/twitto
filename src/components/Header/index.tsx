@@ -8,6 +8,13 @@ const Header = () => {
     <S.Header>
       <S.Wrapper>
         <PosterrLogo />
+        <S.DefaultUserIdentification>
+          <div>
+            <h1>{'Default User'}</h1>
+            <p>{'@defaultUser2022'}</p>
+          </div>
+          <S.ProfilePicture src={'defaultUser2022.jpeg'} />
+        </S.DefaultUserIdentification>
       </S.Wrapper>
     </S.Header>
   )

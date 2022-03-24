@@ -21,12 +21,12 @@
       "username": "monroe2022",
       "joiningData": "September 02, 2021",
       "numberOfPosts": 1,
-      "followers": ["matmachado"],
-      "following": ["matmachado", "jasmineJonJon"]
+      "followers": ["mikeClark654"],
+      "following": ["mikeClark654", "jasmineJonJon"]
     },
     {
-      "name": "Matheus Machado",
-      "username": "matmachado",
+      "name": "Mike Clarkson",
+      "username": "mikeClark654",
       "joiningData": "December 30, 2021",
       "numberOfPosts": 1,
       "followers": ["monroe2022"],

@@ -3,7 +3,6 @@ import * as S from './styles'
 
 import Card from 'components/Card'
 
-import userExample from 'assets/user-example.jpeg'
 import { useProfileModal } from 'hooks/use-profile-modal'
 
 type PostProps = {
@@ -22,7 +21,7 @@ const Post = ({ author, postContent }: PostProps) => {
     <Card>
       <S.Wrapper>
         <S.ProfilePicture
-          src={userExample}
+          src={author.username + '.jpeg'}
           onClick={() => openModalWithUserData(author.username)}
         />
         <S.TextWrapper>
