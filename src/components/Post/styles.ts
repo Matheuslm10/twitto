@@ -10,6 +10,7 @@ export const ProfilePicture = styled.img`
   width: 48px;
   border-radius: 100%;
   margin-right: 15px;
+  cursor: pointer;
 `
 
 export const TextWrapper = styled.div`
@@ -20,6 +21,7 @@ export const TextWrapper = styled.div`
 export const UserInfoWrapper = styled.div`
   display: flex;
   margin-bottom: 5px;
+  cursor: pointer;
 
   h1 {
     font-size: 15px;

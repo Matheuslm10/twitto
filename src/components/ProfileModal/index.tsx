@@ -1,6 +1,7 @@
 import { usePosts } from 'hooks/use-posts'
 import { useProfileModal } from 'hooks/use-profile-modal'
 import { useEffect, useState } from 'react'
+import * as S from './styles'
 
 import Modal from 'react-modal'
 
@@ -12,6 +13,8 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
+    width: '400px',
+    borderRadius: '10px',
   },
 }
 
@@ -46,12 +49,29 @@ const ProfileModal = () => {
       style={customStyles}
       contentLabel="Example Modal"
     >
-      {user.name + ' | '}
-      {user.username + ' | '}
-      {'Joined ' + user.joiningData + ' | '}
-      {user.following.length + ' Following | '}
-      {user.followers.length + ' Followers '}
-      {numberOfPosts + 'Posts'}
+      <S.ContentWrapper>
+        <S.UserIdentification>
+          <h1>{user.name}</h1>
+          <p>{'@' + user.username}</p>
+        </S.UserIdentification>
+        <S.JoiningDate>
+          <p>{'Joined ' + user.joiningData}</p>
+        </S.JoiningDate>
+        <S.FollowWrapper>
+          <p>
+            <S.Bold>{user.following.length}</S.Bold>
+            {' Following'}
+          </p>
+          <p>
+            <S.Bold>{user.followers.length}</S.Bold>
+            {' Followers'}
+          </p>
+          <p>
+            <S.Bold>{numberOfPosts}</S.Bold>
+            {' Posts'}
+          </p>
+        </S.FollowWrapper>
+      </S.ContentWrapper>
     </Modal>
   )
 }
