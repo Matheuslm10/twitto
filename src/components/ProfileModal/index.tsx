@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import * as S from './styles'
 
 import Modal from 'react-modal'
+import Button from 'components/Button'
 
 const customStyles = {
   content: {
@@ -13,7 +14,7 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    width: '400px',
+    width: '480px',
     borderRadius: '10px',
   },
 }
@@ -32,8 +33,10 @@ Modal.setAppElement('#root')
 
 const ProfileModal = () => {
   const [numberOfPosts, setNumberOfPosts] = useState(0)
-  const { user, isShown, closeModal } = useProfileModal()
+  const { user, isShown, closeModal, toggleFollowing } = useProfileModal()
   const { allPosts } = usePosts()
+  const isFollowing = user.followers.includes('defaultUser2022')
+  const isTheUserYourself = user.username === 'defaultUser2022'
 
   useEffect(() => {
     const postsFromUser = allPosts.filter(
@@ -50,27 +53,39 @@ const ProfileModal = () => {
       contentLabel="Example Modal"
     >
       <S.ContentWrapper>
-        <S.UserIdentification>
-          <h1>{user.name}</h1>
-          <p>{'@' + user.username}</p>
-        </S.UserIdentification>
-        <S.JoiningDate>
-          <p>{'Joined ' + user.joiningData}</p>
-        </S.JoiningDate>
-        <S.FollowWrapper>
-          <p>
-            <S.Bold>{user.following.length}</S.Bold>
-            {' Following'}
-          </p>
-          <p>
-            <S.Bold>{user.followers.length}</S.Bold>
-            {' Followers'}
-          </p>
-          <p>
-            <S.Bold>{numberOfPosts}</S.Bold>
-            {' Posts'}
-          </p>
-        </S.FollowWrapper>
+        <S.TopWrapper>
+          <S.UserIdentification>
+            <h1>{user.name}</h1>
+            <p>{'@' + user.username}</p>
+          </S.UserIdentification>
+          <S.FollowButton>
+            {!isTheUserYourself && (
+              <Button onClick={() => toggleFollowing(user.username)}>
+                {isFollowing ? 'Unfollow' : 'Follow'}
+              </Button>
+            )}
+          </S.FollowButton>
+        </S.TopWrapper>
+
+        <S.BottomWrapper>
+          <S.JoiningDate>
+            <p>{'Joined ' + user.joiningData}</p>
+          </S.JoiningDate>
+          <S.NumbersWrapper>
+            <p>
+              <S.Bold>{user.following.length}</S.Bold>
+              {' Following'}
+            </p>
+            <p>
+              <S.Bold>{user.followers.length}</S.Bold>
+              {' Followers'}
+            </p>
+            <p>
+              <S.Bold>{numberOfPosts}</S.Bold>
+              {' Posts'}
+            </p>
+          </S.NumbersWrapper>
+        </S.BottomWrapper>
       </S.ContentWrapper>
     </Modal>
   )

@@ -15,6 +15,17 @@ export const ContentWrapper = styled.div`
   }
 `
 
+export const TopWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
+export const BottomWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
 export const UserIdentification = styled.div`
   display: flex;
   flex-direction: column;
@@ -24,20 +35,25 @@ export const UserIdentification = styled.div`
   }
 `
 
+export const FollowButton = styled.div`
+  display: flex;
+`
+
 export const JoiningDate = styled.div`
   display: flex;
+  margin-top: 22px;
 
   p {
     margin-top: 15px;
   }
 `
 
-export const FollowWrapper = styled.div`
+export const NumbersWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
 
   p {
     margin-top: 15px;
+    margin-right: 15px;
   }
 `
 

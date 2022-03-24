@@ -104,3 +104,99 @@ export const getUserByUsernameFromLS = async (
     throw new Error('An error occurred while searching for the user.')
   }
 }
+
+const unfollowAndUpdate = (
+  users: UserType[],
+  actionOwnerUser: UserType,
+  targetUser: UserType
+): UserType | null => {
+  let updatedUsers
+
+  const actionOwnerUserIndex = targetUser.followers.indexOf(
+    actionOwnerUser.username
+  )
+  const targetUserIndex = actionOwnerUser.following.indexOf(targetUser.username)
+
+  if (actionOwnerUserIndex > -1 && targetUserIndex > -1) {
+    targetUser.followers.splice(actionOwnerUserIndex, 1)
+    actionOwnerUser.following.splice(targetUserIndex, 1)
+
+    updatedUsers = users.map((user: UserType) => {
+      if (user.username === targetUser.username) {
+        return targetUser
+      } else if (user.username === actionOwnerUser.username) {
+        return actionOwnerUser
+      } else {
+        return user
+      }
+    })
+
+    setUsersInLS(updatedUsers)
+
+    return targetUser
+  } else {
+    return null
+  }
+}
+
+const followAndUpdate = (
+  users: UserType[],
+  actionOwnerUser: UserType,
+  targetUser: UserType
+): UserType => {
+  targetUser.followers.push(actionOwnerUser.username)
+  actionOwnerUser.following.push(targetUser.username)
+
+  const updatedUsers = users.map((user: UserType) => {
+    if (user.username === targetUser.username) {
+      return targetUser
+    } else if (user.username === actionOwnerUser.username) {
+      return actionOwnerUser
+    } else {
+      return user
+    }
+  })
+
+  setUsersInLS(updatedUsers)
+
+  return targetUser
+}
+
+export const changeFollowingStatusInLS = async (
+  username: string
+): Promise<string> => {
+  const actionOwnerUsername = 'defaultUser2022'
+
+  const usersData = getUsersFromLS()
+  const users = JSON.parse(usersData).data
+
+  const actionOwnerUser = users.filter(
+    (user: UserType) => user.username === actionOwnerUsername
+  )[0]
+
+  const targetUser = users.filter(
+    (user: UserType) => user.username === username
+  )[0]
+
+  if (actionOwnerUser && targetUser) {
+    let targetUserUpdated
+
+    if (targetUser.followers.includes(actionOwnerUsername)) {
+      targetUserUpdated = unfollowAndUpdate(users, actionOwnerUser, targetUser)
+    } else {
+      targetUserUpdated = followAndUpdate(users, actionOwnerUser, targetUser)
+    }
+
+    const newData = {
+      data: targetUserUpdated,
+    }
+
+    return new Promise((resolve) => {
+      resolve(JSON.stringify(newData))
+    })
+  } else {
+    throw new Error(
+      'An error occurred while changing following/unfollowing status.'
+    )
+  }
+}
