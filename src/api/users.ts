@@ -1,20 +1,10 @@
+import { User } from 'types'
 import {
   getUserByUsernameFromLS,
   changeFollowingStatusInLS,
 } from 'hooks/use-local-storage'
 
-// TODO: put this type definition in a shared space.
-type UserType = {
-  name: string
-  username: string
-  joiningData: string
-  followers: string[]
-  following: string[]
-}
-
-export const fetchUserByUsername = async (
-  username: string
-): Promise<UserType> => {
+export const fetchUserByUsername = async (username: string): Promise<User> => {
   try {
     const response = JSON.parse(await getUserByUsernameFromLS(username)) // represents a call to a fake API url, GET method.
     const user = response.data
@@ -27,7 +17,7 @@ export const fetchUserByUsername = async (
 
 export const changeFollowingStatus = async (
   username: string
-): Promise<UserType> => {
+): Promise<User> => {
   try {
     const response = JSON.parse(await changeFollowingStatusInLS(username)) // represents a call to a fake API url, POST method.
     const user = response.data

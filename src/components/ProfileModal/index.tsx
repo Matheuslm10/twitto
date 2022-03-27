@@ -1,8 +1,9 @@
 import { usePosts } from 'hooks/use-posts'
 import { useProfileModal } from 'hooks/use-profile-modal'
 import { useEffect, useState } from 'react'
-import * as S from './styles'
 
+import * as S from './styles'
+import { Post } from 'types'
 import Modal from 'react-modal'
 import Button from 'components/Button'
 
@@ -19,16 +20,6 @@ const customStyles = {
   },
 }
 
-// TODO: put this type definition in a shared space.
-type PostType = {
-  id: number
-  author: {
-    name: string
-    username: string
-  }
-  postContent: string
-}
-
 Modal.setAppElement('#root')
 
 const ProfileModal = () => {
@@ -40,7 +31,7 @@ const ProfileModal = () => {
 
   useEffect(() => {
     const postsFromUser = allPosts.filter(
-      (post: PostType) => post.author.username === user.username
+      (post: Post) => post.author.username === user.username
     )
     setNumberOfPosts(postsFromUser.length)
   }, [allPosts, user.username])

@@ -1,20 +1,11 @@
-import { fetchUserByUsername } from 'api/users'
 import { useContext, createContext, useState, useCallback } from 'react'
 
-import { changeFollowingStatus } from 'api/users'
-
-// TODO: put this type definition in a shared space.
-type UserType = {
-  name: string
-  username: string
-  joiningData: string
-  followers: string[]
-  following: string[]
-}
+import { User } from 'types'
+import { changeFollowingStatus, fetchUserByUsername } from 'api/users'
 
 export type ProfileModalContextTypes = {
   isShown: boolean
-  user: UserType
+  user: User
   openModalWithUserData: (username: string) => void
   toggleFollowing: (username: string) => void
   closeModal: () => void
@@ -44,7 +35,7 @@ export type ProfileModalProviderProps = {
 
 const ProfileModalProvider = ({ children }: ProfileModalProviderProps) => {
   const [isShown, setIsShown] = useState<boolean>(false)
-  const [user, setUser] = useState<UserType>({
+  const [user, setUser] = useState<User>({
     name: '',
     username: '',
     joiningData: '',

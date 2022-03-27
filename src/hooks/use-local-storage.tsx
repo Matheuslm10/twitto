@@ -1,29 +1,11 @@
+import { Post, User } from 'types'
 import initialPosts from 'mock/posts.json'
 import initialUsers from 'mock/users.json'
 
 const postsKey = '@posterr-data-posts'
 const usersKey = '@posterr-data-users'
 
-// TODO: put this type definition in a shared space.
-type PostType = {
-  id: number
-  author: {
-    name: string
-    username: string
-  }
-  postContent: string
-}
-
-// TODO: put this type definition in a shared space.
-type UserType = {
-  name: string
-  username: string
-  joiningData: string
-  followers: string[]
-  following: string[]
-}
-
-const setPostsInLS = (posts: PostType[]) => {
+const setPostsInLS = (posts: Post[]) => {
   const newData = {
     data: posts,
   }
@@ -43,7 +25,7 @@ export const getPostsFromLS = async (): Promise<string> => {
   }
 }
 
-export const addPostInLS = async (post: PostType): Promise<string> => {
+export const addPostInLS = async (post: Post): Promise<string> => {
   const value = localStorage.getItem(postsKey)
   let posts
 
@@ -65,7 +47,7 @@ export const addPostInLS = async (post: PostType): Promise<string> => {
   }
 }
 
-const setUsersInLS = (users: UserType[]) => {
+const setUsersInLS = (users: User[]) => {
   const newData = {
     data: users,
   }
@@ -89,7 +71,7 @@ export const getUserByUsernameFromLS = async (
   const usersData = getUsersFromLS()
 
   const user = JSON.parse(usersData).data.filter(
-    (user: UserType) => user.username === username
+    (user: User) => user.username === username
   )[0]
 
   if (user) {
@@ -106,10 +88,10 @@ export const getUserByUsernameFromLS = async (
 }
 
 const unfollowAndUpdate = (
-  users: UserType[],
-  actionOwnerUser: UserType,
-  targetUser: UserType
-): UserType | null => {
+  users: User[],
+  actionOwnerUser: User,
+  targetUser: User
+): User | null => {
   let updatedUsers
 
   const actionOwnerUserIndex = targetUser.followers.indexOf(
@@ -121,7 +103,7 @@ const unfollowAndUpdate = (
     targetUser.followers.splice(actionOwnerUserIndex, 1)
     actionOwnerUser.following.splice(targetUserIndex, 1)
 
-    updatedUsers = users.map((user: UserType) => {
+    updatedUsers = users.map((user: User) => {
       if (user.username === targetUser.username) {
         return targetUser
       } else if (user.username === actionOwnerUser.username) {
@@ -140,14 +122,14 @@ const unfollowAndUpdate = (
 }
 
 const followAndUpdate = (
-  users: UserType[],
-  actionOwnerUser: UserType,
-  targetUser: UserType
-): UserType => {
+  users: User[],
+  actionOwnerUser: User,
+  targetUser: User
+): User => {
   targetUser.followers.push(actionOwnerUser.username)
   actionOwnerUser.following.push(targetUser.username)
 
-  const updatedUsers = users.map((user: UserType) => {
+  const updatedUsers = users.map((user: User) => {
     if (user.username === targetUser.username) {
       return targetUser
     } else if (user.username === actionOwnerUser.username) {
@@ -171,12 +153,10 @@ export const changeFollowingStatusInLS = async (
   const users = JSON.parse(usersData).data
 
   const actionOwnerUser = users.filter(
-    (user: UserType) => user.username === actionOwnerUsername
+    (user: User) => user.username === actionOwnerUsername
   )[0]
 
-  const targetUser = users.filter(
-    (user: UserType) => user.username === username
-  )[0]
+  const targetUser = users.filter((user: User) => user.username === username)[0]
 
   if (actionOwnerUser && targetUser) {
     let targetUserUpdated

@@ -1,16 +1,8 @@
 import { getPostsFromLS, addPostInLS } from 'hooks/use-local-storage'
 
-// TODO: put this type definition in a shared space.
-type PostType = {
-  id: number
-  author: {
-    name: string
-    username: string
-  }
-  postContent: string
-}
+import { Post } from 'types'
 
-export const fetchAllPosts = async (): Promise<PostType[]> => {
+export const fetchAllPosts = async (): Promise<Post[]> => {
   try {
     const response = JSON.parse(await getPostsFromLS()) // represents a call to a fake API url, GET method.
     const posts = response.data
@@ -21,7 +13,7 @@ export const fetchAllPosts = async (): Promise<PostType[]> => {
   }
 }
 
-export const createPost = async (post: PostType): Promise<PostType> => {
+export const createPost = async (post: Post): Promise<Post> => {
   try {
     const response = JSON.parse(await addPostInLS(post)) // represents a call to a fake API url, POST method.
     const postCreated = response.data

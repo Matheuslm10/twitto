@@ -6,21 +6,12 @@ import {
   useEffect,
 } from 'react'
 
+import { Post } from 'types'
 import { fetchAllPosts, createPost } from 'api/posts'
 
-// TODO: put this type definition in a shared space.
-type PostType = {
-  id: number
-  author: {
-    name: string
-    username: string
-  }
-  postContent: string
-}
-
 export type PostsContextTypes = {
-  allPosts: PostType[]
-  addPost: (post: PostType) => void
+  allPosts: Post[]
+  addPost: (post: Post) => void
 }
 
 export const PostsContextDefaultValues = {
@@ -37,7 +28,7 @@ export type PostsProviderProps = {
 }
 
 const PostsProvider = ({ children }: PostsProviderProps) => {
-  const [allPosts, setAllPosts] = useState<PostType[]>([])
+  const [allPosts, setAllPosts] = useState<Post[]>([])
 
   const getAllPosts = useCallback(async () => {
     try {
@@ -50,7 +41,7 @@ const PostsProvider = ({ children }: PostsProviderProps) => {
   }, [])
 
   const addPost = useCallback(
-    async (post: PostType) => {
+    async (post: Post) => {
       try {
         const data = await createPost(post)
         const newPostList = [data].concat(allPosts)
