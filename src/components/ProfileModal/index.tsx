@@ -2,8 +2,8 @@ import { usePosts } from 'hooks/use-posts'
 import { useProfileModal } from 'hooks/use-profile-modal'
 import { useEffect, useState } from 'react'
 
-import * as S from './styles'
 import { Post } from 'types'
+import * as S from './styles'
 import Modal from 'react-modal'
 import Button from 'components/Button'
 

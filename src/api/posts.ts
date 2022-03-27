@@ -1,6 +1,5 @@
-import { getPostsFromLS, addPostInLS } from 'hooks/use-local-storage'
-
 import { Post } from 'types'
+import { getPostsFromLS, addPostInLS } from 'hooks/use-local-storage'
 
 export const fetchAllPosts = async (): Promise<Post[]> => {
   try {

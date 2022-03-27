@@ -1,8 +1,5 @@
-import React from 'react'
 import * as S from './styles'
-
 import Card from 'components/Card'
-
 import { useProfileModal } from 'hooks/use-profile-modal'
 
 type PostProps = {

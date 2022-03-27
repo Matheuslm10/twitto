@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useState } from 'react'
-import * as S from './styles'
 
+import * as S from './styles'
 import Card from 'components/Card'
 import Button from 'components/Button'
 import { usePosts } from 'hooks/use-posts'
