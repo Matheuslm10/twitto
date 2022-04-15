@@ -1,11 +1,11 @@
 import * as S from './styles'
-import { ReactComponent as PosterrLogo } from 'assets/posterr-logo.svg'
+import { ReactComponent as TwittoLogo } from 'assets/twitto-logo.svg'
 
 const Header = () => {
   return (
     <S.Header>
       <S.Wrapper>
-        <PosterrLogo />
+        <TwittoLogo />
         <S.DefaultUserIdentification>
           <div>
             <h1>{'Default User'}</h1>

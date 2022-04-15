@@ -2,8 +2,8 @@ import { Post, User } from 'types'
 import initialPosts from 'mock/posts.json'
 import initialUsers from 'mock/users.json'
 
-const postsKey = '@posterr-data-posts'
-const usersKey = '@posterr-data-users'
+const postsKey = '@twitto-data-posts'
+const usersKey = '@twitto-data-users'
 
 const setPostsInLS = (posts: Post[]) => {
   const newData = {
