@@ -9,52 +9,138 @@ const PostMaker = () => {
   const [submitBtnIsEnabled, setSubmitBtnIsEnabled] = useState(false)
   const [content, setContent] = useState('')
   const [exceedsTheLimit, setExceedsTheLimit] = useState(false)
-  const maxNumberOfCharacters = 777
+  const maxNumberOfCharacters = 280
   const [numberOfCharactersLeft, setNumberOfCharactersLeft] = useState(
     maxNumberOfCharacters
   )
+  const textInputElementId = 'text-input'
 
   const { addPost } = usePosts()
 
-  const checkCharacters = (event: React.FormEvent<HTMLInputElement>) => {
-    const eventTarget = event?.target as HTMLElement
-    let numberOfCharacters = eventTarget.textContent?.length || 0
-
-    const wrapper = document.createElement('div')
-    wrapper.innerHTML = eventTarget.innerHTML
-    let numberOfLines = wrapper.childElementCount + 1
+  const countNumberOfValidCharacters = (
+    textContent: string,
+    numberOfCharacters: number,
+    numberOfLines: number
+  ) => {
+    let total = 0
 
     if (numberOfLines) numberOfLines -= 1
 
-    numberOfCharacters += numberOfLines
+    // Do nothing if the textContent has only whitespaces.
+    if (textContent.trim().length !== 0) {
+      total = numberOfCharacters + numberOfLines
+    }
 
-    if (numberOfCharacters > maxNumberOfCharacters) {
+    return total
+  }
+
+  const setButtonEnableness = (totalNumberOfValidCharacters: number) => {
+    if (totalNumberOfValidCharacters > maxNumberOfCharacters) {
       setSubmitBtnIsEnabled(false)
       setExceedsTheLimit(true)
-    } else if (numberOfCharacters === 0) {
+    } else if (totalNumberOfValidCharacters === 0) {
       setSubmitBtnIsEnabled(false)
       setExceedsTheLimit(false)
     } else {
       setSubmitBtnIsEnabled(true)
       setExceedsTheLimit(false)
     }
+  }
 
-    const numberOfCharactersLeft = maxNumberOfCharacters - numberOfCharacters
+  const pasteContentWithoutFormatting = (
+    event: React.ClipboardEvent<HTMLInputElement>
+  ) => {
+    const data = event.clipboardData.getData('text/plain')
 
-    setNumberOfCharactersLeft(numberOfCharactersLeft)
+    const el = document.createElement('div')
+    el.innerText = data
+
+    const userSelection = window.getSelection()
+    const properTextInput = document.getElementById(textInputElementId) as Node
+
+    if (userSelection?.containsNode(properTextInput, true)) {
+      const selectedTextRange = userSelection?.getRangeAt(0)
+
+      selectedTextRange.collapse(true)
+
+      const frag = document.createDocumentFragment()
+
+      while (el.childNodes[0]) {
+        frag.appendChild(el.childNodes[0])
+      }
+
+      selectedTextRange.insertNode(frag)
+    }
   }
 
   const handleInput = useCallback((event) => {
-    checkCharacters(event)
-    setContent(event.target.innerText)
+    event.preventDefault()
+
+    if (event.inputType !== 'insertFromPaste') {
+      const eventTarget = event?.target
+      const textContent = eventTarget.innerText || ''
+      const cleanedTextContent = textContent
+        ?.trim()
+        .replace(/(\r\n|\n|\r)/gm, '')
+
+      const wrapper = document.createElement('div')
+      wrapper.innerHTML = eventTarget.innerHTML
+
+      const numberOfCharacters = cleanedTextContent.length || 0
+      const numberOfLines = wrapper.childElementCount + 1
+
+      const total = countNumberOfValidCharacters(
+        cleanedTextContent,
+        numberOfCharacters,
+        numberOfLines
+      )
+
+      setButtonEnableness(total)
+
+      const numberOfCharactersLeft = maxNumberOfCharacters - total
+      setNumberOfCharactersLeft(numberOfCharactersLeft)
+
+      setContent(event.target.innerText)
+    }
+  }, [])
+
+  const handleInputInsertFromPaste = useCallback((event) => {
+    event.preventDefault()
+    pasteContentWithoutFormatting(event)
+
+    const eventTarget = event?.target as HTMLElement
+    const targetTextContent = eventTarget.innerText
+    const cleanedTextContent = targetTextContent
+      ?.trim()
+      .replace(/(\r\n|\n|\r)/gm, '')
+
+    const el = document.createElement('div')
+    el.innerHTML = eventTarget.innerHTML
+
+    const numberOfCharacters = cleanedTextContent?.length || 0
+    const numberOfLines = el.childElementCount + 1
+
+    const total = countNumberOfValidCharacters(
+      cleanedTextContent || '',
+      numberOfCharacters,
+      numberOfLines
+    )
+    setButtonEnableness(total)
+
+    const numberOfCharactersLeft = maxNumberOfCharacters - total
+    setNumberOfCharactersLeft(numberOfCharactersLeft)
+
+    setContent(el.innerText)
   }, [])
 
   useEffect(() => {
+    window.addEventListener('paste', handleInputInsertFromPaste)
     window.addEventListener('input', handleInput)
     return () => {
+      window.removeEventListener('paste', handleInputInsertFromPaste)
       window.removeEventListener('input', handleInput)
     }
-  }, [handleInput])
+  }, [handleInput, handleInputInsertFromPaste])
 
   const buildPost = () => {
     const post = {
@@ -84,7 +170,7 @@ const PostMaker = () => {
       <Card>
         <S.Wrapper>
           <S.TextInput
-            id="text-input"
+            id={textInputElementId}
             role="textbox"
             placeholder="What's happening?"
             contentEditable="true"
@@ -92,7 +178,7 @@ const PostMaker = () => {
           ></S.TextInput>
           <S.BottomWrapper>
             <S.CharactersLeft exceedsTheLimit={exceedsTheLimit}>
-              {numberOfCharactersLeft + '/777'}
+              {numberOfCharactersLeft + '/' + maxNumberOfCharacters}
             </S.CharactersLeft>
             <Button
               aria-label="submit post button"

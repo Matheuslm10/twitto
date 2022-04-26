@@ -6,7 +6,7 @@
         "name": "Jasmine Jones",
         "username": "jasmineJonJon"
       },
-      "postContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum nisl et nisl laoreet, in euismod risus bibendum. Pellentesque at laoreet elit, nec facilisis felis. Aenean molestie, ipsum nec condimentum egestas, turpis arcu consequat felis, ut blandit urna dui in neque. Phasellus eu gravida ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum nisl et nisl laoreet, in euismod risus bibendum. Pellentesque at laoreet elit, nec facilisis felis. Aenean molestie, ipsum nec condimentum egestas, turpis arcu consequat felis, ut blandit urna dui in neque. Phasellus eu gravida ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum nisl et nisl laoreet, in euismod risus bibendum. Lorem ipsum dolor siti."
+      "postContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n\n Suspendisse elementum nisl et nisl laoreet, in euismod risus bibendum. Pellentesque at laoreet elit, nec facilisis felis. Aenean molestie, ipsum nec condimentum egestas, turpis arcu consequat felis, ut blandit urna amet et"
     },
     {
       "id": 2,
@@ -14,7 +14,7 @@
         "name": "Josh Monroe",
         "username": "monroe2022"
       },
-      "postContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum nisl et nisl laoreet, in euismod risus bibendum. Pellentesque at laoreet elit, nec facilisis felis. Aenean molestie, ipsum nec condimentum egestas, turpis arcu consequat felis, ut blandit urna dui in neque. Phasellus eu gravida ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum nisl et nisl laoreet, in euismod risus bibendum. Pellentesque at laoreet elit, nec facilisis felis. Aenean molestie, ipsum nec condimentum egestas, turpis arcu consequat felis, ut blandit urna dui in neque. Phasellus eu gravida ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum nisl et nisl laoreet, in euismod risus bibendum. Lorem ipsum dolor siti."
+      "postContent": "Lorem ipsum dolor sit amet.\n Suspendisse elementum nisl et nisl laoreet, in euismod risus bibendum.\n Pellentesque at laoreet elit.\n\n Aenean molestie. Pellentesque at laoreet elit. Pellentesque at laoreet elit. Pellentesque at laoreet elit. Pellentesque at laoreet elit. Pellentesque."
     },
     {
       "id": 3,
@@ -22,7 +22,7 @@
         "name": "Mike Clarkson",
         "username": "mikeClark654"
       },
-      "postContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum nisl et nisl laoreet, in euismod risus bibendum. Pellentesque at laoreet elit, nec facilisis felis. Aenean molestie, ipsum nec condimentum egestas, turpis arcu consequat felis, ut blandit urna dui in neque. Phasellus eu gravida ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum nisl et nisl laoreet, in euismod risus bibendum. Pellentesque at laoreet elit, nec facilisis felis. Aenean molestie, ipsum nec condimentum egestas, turpis arcu consequat felis, ut blandit urna dui in neque. Phasellus eu gravida ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum nisl et nisl laoreet, in euismod risus bibendum. Lorem ipsum dolor siti."
+      "postContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum nisl et nisl laoreet, in euismod risus bibendum. Pellentesque at laoreet elit, nec facilisis felis. Aenean molestie, ipsum nec condimentum egestas, turpis arcu consequat felis, ut blandit urna amet et."
     }
   ]
 }
