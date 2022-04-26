@@ -1,15 +1,41 @@
-<h1 align="center">
-  Twitto    
-</h1>
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/17602947/165199821-e2251489-eee1-4bb1-8e00-57c7e729df53.svg" height="80">
+  <h1 align="center">Twitto</h1>
+</div>
+
 <h4 align="center">
   "What's happening?". A Twitter-like app.
 </h4>
 
-## 1 - Intro
+<p align="center">
+  <img alt="MIT License" src="https://img.shields.io/github/license/Matheuslm10/twitto?style=plastic">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Matheuslm10/twitto?style=plastic">
+  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Matheuslm10/twitto?style=plastic">
+  <img alt="Javascript percentage" src="https://img.shields.io/github/languages/top/Matheuslm10/twitto?style=plastic">    
+</p>
+
+<p align="center">
+ <a href="#1---the-app-sparkles">The App</a> •
+ <a href="#2---features-bulb">Features</a> • 
+ <a href="#3---a-new-feature-thought_balloon">A New Feature</a> • 
+ <a href="#4---next-steps-for-scaling-rocket">Next Steps for Scaling</a> •   
+ <a href="#5---technologies-hammer_and_wrench">Technologies</a> • 
+ <a href="#6---how-to-run-computer">How to run</a> •
+ <a href="#7---license-balance_scale">License</a> • 
+ <a href="#8---author-man_technologist">Author</a>
+</p>
+
+## 1 - The App :sparkles: 
 
 This app has the same fundamental features as Twitter. It implements only the UI interface and uses the localstorage to simulate responses, like a fake API.
 
-## 2 - Features
+<p align="center">
+  <img width="650" alt="Editing text" src="https://user-images.githubusercontent.com/17602947/165204128-671736fc-9684-4e2c-a410-8c516af5dfec.gif"> 
+  <br><br>
+  <img width="650" alt="Following Feature" src="https://user-images.githubusercontent.com/17602947/165204415-eb0c3aab-64be-468a-882b-89e4cf563a8e.gif">
+</p>
+
+## 2 - Features :bulb:
 
 ### 2.1 - Home page
 ✅ The user should be able to see posts in the feed (his/her and others'), by default.
@@ -50,11 +76,11 @@ This app has the same fundamental features as Twitter. It implements only the UI
 
 ✅ The user should be able to write original posts.
 
-✅ The user should be able to write posts that contain a maximum of 777 characters.
+✅ The user should be able to write posts that contain a maximum of 280 characters.
 
 ✅ The user should be able to see how many characters he/she has left, when writing a post.
 
-## 3 - A New Feature
+## 3 - A New Feature :thought_balloon:
 
 In this section I describe a situation in which a fictional Product Manager (PM) would present me a new feature:
 
@@ -150,7 +176,7 @@ e.g. Posts and Replies from the "Bumblebee" user mentioned before:
 ]
 ```
 
-## 4 - Next Steps for Scaling
+## 4 - Next Steps for Scaling :rocket:
 
 If this project grows, I believe the first part that would fail would be the post listing. The amount would be so large that the application would most likely face performance issues. A possible solution to this would be the Lazy loading approach.
 Certainly Local Storage could no longer be used to save so much data and a database would be essential, as well as an API and maybe even a BFF (Backend for Frontend) server to perform operations on the data, thus removing the many client-side data processing functions.
@@ -160,7 +186,7 @@ With the growth of the product, more teams would be needed to handle the many de
 In applications the size of Twitter, it would be extremely important to monitor the health of the applications and servers, it would help to anticipate problems that users may face when using the product. So investing in observability and monitoring tools like [New Relic](https://newrelic.com/) would be a great strategy to keep teams up to date on the state of the “gears” that keep the product running.
 
 
-## 5 - Technologies
+## 5 - Technologies :hammer_and_wrench:
 
 - [React JS](https://reactjs.org/)
   - [Custom Hooks](https://reactjs.org/docs/hooks-custom.html#extracting-a-custom-hook)
@@ -170,7 +196,7 @@ In applications the size of Twitter, it would be extremely important to monitor 
 - [Styled Components](https://www.styled-components.com/)
 - [React Modal](https://www.npmjs.com/package/react-modal)
 
-## 6 - How to run
+## 6 - How to run :computer:
 
 To be able to run this project you need Node (^12.0.0) and Yarn (1.22.17).
 
@@ -211,11 +237,11 @@ yarn format
 yarn test
 ```
 
-## 7 - License
+## 7 - License :balance_scale:
 
 This repository is licensed by MIT LICENSE. For more detailed information, read the LICENSE file contained in that repository.
 
-## 8 - Author
+## 8 - Author :man_technologist:
 
 [![Linkedin Badge](https://img.shields.io/badge/-Matheus_Machado-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/matheusmachado-dev/)  
 Contact me!
